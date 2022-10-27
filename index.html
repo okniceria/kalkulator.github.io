@@ -12,26 +12,6 @@
         <script src="https://unpkg.com/feather-icons"></script>
             <!-- Web Application Manifest -->
     <link rel="manifest" href="https://lazismu.org/manifest.json">
-    <!-- Chrome for Android theme color -->
-    <meta name="theme-color" content="#000000">
-    
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Lazismu">
-    <link rel="icon" sizes="512x512" href="icon-512.png">
-    
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Lazismu">
-    <link rel="apple-touch-icon" href="icon-512.png">
-    
-    
- 
-    <!-- Tile for Win8 -->
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="icon-512.png">
-    
   
         
         <script src="https://my.hellobar.com/eb7418390fd0b233f7320dc966f017e97f74adee.js" type="text/javascript" charset="utf-8" async="async"> </script>
@@ -172,65 +152,7 @@
                             </div>
                         </div>
                     </div>
-                    <script>
-                        function profesi({ goldPrice }) {
-                            return {
-                                init() {
-                                    this.setAutoNumeric(this.$refs.formatted_income);
-                                    this.setAutoNumeric(this.$refs.formatted_other_income);
-                                    this.setAutoNumeric(this.$refs.formatted_bond);
-                                },
-                                setAutoNumeric($ref) {
-                                    new AutoNumeric($ref, {
-                                        decimalPlaces: 0,
-                                        decimalCharacter: ',',
-                                        digitGroupSeparator: '.',
-                                        minimumValue: 0,
-                                    });
-                                },
-                                income: 0,
-                                formatted_income: 0,
-                                other_income: 0,
-                                formatted_other_income: 0,
-                                bond: 0,
-                                formatted_bond: 0,
-                                total() {
-                                    let total = (parseInt(this.income) || 0) + (parseInt(this.other_income) || 0) - (parseInt(this.bond) || 0);
 
-                                    if (total < 1) {
-                                        return 0;
-                                    }
-
-                                    return total;
-                                },
-                                formatted_total() {
-                                    return this.format(this.total());
-                                },
-                                nisab() {
-                                    return (85 * goldPrice / 12).toFixed(0);
-                                },
-                                formatted_nisab() {
-                                    return this.format(this.nisab());
-                                },
-                                amount() {
-                                    if (this.total() < this.nisab()) {
-                                        return 0;
-                                    }
-
-                                    return (this.total() * 0.025).toFixed(0);
-                                },
-                                formatted_amount() {
-                                    return this.format(this.amount());
-                                },
-                                sanitize(formattedNumber) {
-                                    return String(formattedNumber).split('.').join('');
-                                },
-                                format(number) {
-                                    return Number(number).toLocaleString('id');
-                                },
-                            }
-                        }
-                    </script>
 
                 </div>
 
@@ -456,22 +378,67 @@
         </div>
     </main>
 </div>
-<script src="https://lazismu.org/js/app.js"></script>
-<!-- Facebook Pixel Code -->
 <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '726795658077155');
+    function profesi({ goldPrice }) {
+        return {
+            init() {
+                this.setAutoNumeric(this.$refs.formatted_income);
+                this.setAutoNumeric(this.$refs.formatted_other_income);
+                this.setAutoNumeric(this.$refs.formatted_bond);
+            },
+            setAutoNumeric($ref) {
+                new AutoNumeric($ref, {
+                    decimalPlaces: 0,
+                    decimalCharacter: ',',
+                    digitGroupSeparator: '.',
+                    minimumValue: 0,
+                });
+            },
+            income: 0,
+            formatted_income: 0,
+            other_income: 0,
+            formatted_other_income: 0,
+            bond: 0,
+            formatted_bond: 0,
+            total() {
+                let total = (parseInt(this.income) || 0) + (parseInt(this.other_income) || 0) - (parseInt(this.bond) || 0);
 
-    
-        fbq('track', 'PageView');
+                if (total < 1) {
+                    return 0;
+                }
+
+                return total;
+            },
+            formatted_total() {
+                return this.format(this.total());
+            },
+            nisab() {
+                return (85 * goldPrice / 12).toFixed(0);
+            },
+            formatted_nisab() {
+                return this.format(this.nisab());
+            },
+            amount() {
+                if (this.total() < this.nisab()) {
+                    return 0;
+                }
+
+                return (this.total() * 0.025).toFixed(0);
+            },
+            formatted_amount() {
+                return this.format(this.amount());
+            },
+            sanitize(formattedNumber) {
+                return String(formattedNumber).split('.').join('');
+            },
+            format(number) {
+                return Number(number).toLocaleString('id');
+            },
+        }
+    }
 </script>
+<script src="https://lazismu.org/js/app.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
 </body>
 </html>
